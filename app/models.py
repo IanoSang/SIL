@@ -1,8 +1,8 @@
 from django.db import models
 
 
-def upload_path(instance, filname):
-    return '/'.join(['photos', str(instance.photo_name), filname])
+def upload_path(instance, filename):
+    return '/'.join(['photos', str(instance.photo_name), filename])
 
 
 # Create your models here.
