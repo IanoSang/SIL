@@ -1,6 +1,5 @@
 from django.db import models
 
-
 def upload_path(instance, filename):
     return '/'.join(['photos', str(instance.photo_name), filename])
 
@@ -45,3 +44,10 @@ class Image(models.Model):
 
     class Meta:
         ordering = ['date']
+
+
+class File(models.Model):
+    file = models.FileField(blank=False, null=False)
+
+    def __str__(self):
+        return self.file.name
