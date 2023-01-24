@@ -1,5 +1,8 @@
 from django.db import models
 
+def upload_path(instance, filename):
+    return '/'.join(['photos', str(instance.photo_name), filename])
+
 
 # Create your models here.
 
@@ -11,10 +14,10 @@ class Album(models.Model):
 
 
 class Image(models.Model):
-    photo = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
+    photo = models.ImageField(blank=True, null=True, upload_to=upload_path, max_length=100)
     photo_name = models.CharField(max_length=40)
     date = models.DateTimeField(auto_now_add=True)
-    category = models.ForeignKey(Album, on_delete=models.CASCADE, default='')
+    album = models.ForeignKey(Album, on_delete=models.CASCADE, default='')
 
     def __str__(self):
         return self.photo_name
@@ -41,3 +44,10 @@ class Image(models.Model):
 
     class Meta:
         ordering = ['date']
+
+
+class File(models.Model):
+    file = models.FileField(blank=False, null=False)
+
+    def __str__(self):
+        return self.file.name

@@ -1,0 +1,1 @@
+web: gunicorn 'SIL.wsgi'
