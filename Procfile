@@ -1,1 +1,1 @@
-web: gunicorn 'SIL.wsgi'
+web: gunicorn SIL.wsgi --log-file -
